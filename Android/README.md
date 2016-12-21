@@ -252,3 +252,13 @@ You need to add the following in your AIR manifest:
     private function killApp():void{
         PeakAirExtension.onDestroy();
     }
+    
+###10. Set Target Gender:
+    PeakAirExtension.setTargetGender(PeakTargetGender.UNKNOWN);
+    //or
+    //PeakAirExtension.setTargetGender(PeakTargetGender.MALE);
+    //or
+    //PeakAirExtension.setTargetGender(PeakTargetGender.FEMALE);
+    
+###11. Set Target Age:
+    PeakAirExtension.setTargetingAge(value); // value:int
