@@ -252,3 +252,15 @@ You need to add the following in your AIR manifest:
     private function killApp():void{
         PeakAirExtension.onDestroy();
     }
+    
+###Peak SDK provides a way to set preffered targeting age and gender to inrease eCPM. This will not restrict ads to show only targeted ads. Please set targeting BEFORE the first sdk initialization.
+
+###10. Set Target Gender:
+    PeakAirExtension.setTargetGender(PeakTargetGender.UNKNOWN);
+    //or
+    //PeakAirExtension.setTargetGender(PeakTargetGender.MALE);
+    //or
+    //PeakAirExtension.setTargetGender(PeakTargetGender.FEMALE);
+    
+###11. Set Target Age:
+    PeakAirExtension.setTargetingAge(value); // value:int
