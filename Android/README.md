@@ -137,48 +137,48 @@ You need to add the following in your AIR manifest:
 
     PeakAirExtension.dispatcher.addEventListener(StatusEvent.STATUS, _handlerPeakAirExtensionStatus);
     private function _handlerPeakAirExtensionStatus(event:StatusEvent):void{ 
-              switch(event.level){
-                   case Constants.EVENT_LEVEL_SDK_INITIALIZATION_SUCCESS:{
-                       // To do
-                       break;
-                   }
-                   case Constants.EVENT_LEVEL_SDK_INITIALIZATION_FAILED:{
-                       // To do
-                       break;
-                   }
-                   case Constants.EVENT_BANNER_SHOW_SUCCESS:{
-                       // To do
-                       break;
-                   }
-                   case Constants.EVENT_BANNER_SHOW_FAILED:{
-                       // To do
-                       break;
-                   }
-                   case Constants.EVENT_INTERSTITIAL_SHOW_SUCCESS:{
-                         // To do
-                         break;
-                     }
-                     case Constants.EVENT_INTERSTITIAL_SHOW_FAILED:{
-                         // To do
-                         break;
-                     }
-                    case Constants.EVENT_INTERSTITIAL_CLOSED:{
-                         // To do
-                         break;
-                     }
-                     case Constants.EVENT_COMPLETED_REWARD_EXPERIENCE:{
-                         // To do
-                         break;
-                     }
-                    case Constants.EVENT_NATIVE_AD_SHOW_SUCCESS:{
-                         // To do
-                         break;
-                     }
-                     case Constants.EVENT_NATIVE_AD_SHOW_FAILED:{
-                         // To do
-                         break;
-                     }
-              } 
+       switch(event.level){
+           case Constants.EVENT_LEVEL_SDK_INITIALIZATION_SUCCESS:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_LEVEL_SDK_INITIALIZATION_FAILED:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_BANNER_SHOW_SUCCESS:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_BANNER_SHOW_FAILED:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_INTERSTITIAL_SHOW_SUCCESS:{
+                // To do
+               break;
+           }
+           case Constants.EVENT_INTERSTITIAL_SHOW_FAILED:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_INTERSTITIAL_CLOSED:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_COMPLETED_REWARD_EXPERIENCE:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_NATIVE_AD_SHOW_SUCCESS:{
+               // To do
+               break;
+           }
+           case Constants.EVENT_NATIVE_AD_SHOW_FAILED:{
+               // To do
+               break;
+           }
+        } 
      }
 ###4. Initialize peak sdk in your activity with your application id:
 
@@ -208,22 +208,22 @@ You need to add the following in your AIR manifest:
     private function bindNativeAdToViews():void{
         //fill views with received native ad data
 
-      // load the _objectNativeAd.mainImage into your ImageView for the main image
-      // load the _objectNativeAd.icon into your ImageView for icon image
-      // get the _objectNativeAd.privacyIcon url and get from this url Bitmap:
+        // load the _objectNativeAd.mainImage into your ImageView for the main image
+        // load the _objectNativeAd.icon into your ImageView for icon image
+        // get the _objectNativeAd.privacyIcon url and get from this url Bitmap:
         var spritePrivacyIcon:Sprite = new Sprite();
         addChild(spritePrivacyIcon);
         var privacyIcon:Bitmap = PeakAirExtension.getPrivacyIcon(_objectNativeAd.privacyIcon) as Bitmap;
         spritePrivacyIcon.addChild(privacyIcon);
-      // set the _objectNativeAd.title into you TextView for title
-      // set the _objectNativeAd.text into you TextView for description text
-      // set the _objectNativeAd.actionText into your Button
+        // set the _objectNativeAd.title into you TextView for title
+        // set the _objectNativeAd.text into you TextView for description text
+        // set the _objectNativeAd.actionText into your Button
 
         // set listener on your button
         buttonNativeAdClick.addEventListener(MouseEvent.CLICK, handleNativeAdClicked, false, 0, true);
 
-      // set listener on your sprite with privacy icon
-      spritePrivacyIcon.addEventListener(MouseEvent.CLICK, handleNativeAdPrivacyIconClicked, false, 0, true);
+        // set listener on your sprite with privacy icon
+        spritePrivacyIcon.addEventListener(MouseEvent.CLICK, handleNativeAdPrivacyIconClicked, false, 0, true);
     }
     private function handleNativeAdClicked(event:MouseEvent):void{
         PeakAirExtension.handleNativeAdClicked(AD_ZONE_ID);
@@ -252,3 +252,19 @@ You need to add the following in your AIR manifest:
     private function killApp():void{
         PeakAirExtension.onDestroy();
     }
+###10. Targeting:
+Peak SDK provides a way to set preffered targeting age and gender to inrease eCPM. This will not restrict ads to show only targeted ads.
+There are 2 method for targeting in PeakSDK for air:
+#####10.1. For gender targeting:
+  ```setTargetingGender( PeakTargetGender gender ); ```
+
+   where "gender" could be one of the values below:
+   ```UNKNOWN = 0,
+     MALE = 1,
+     FEMALE = 2.```
+by default the target gender is set to ```UNKNOWN```.
+#####10.2. For agetargeting:
+   ```setTargetingAge( int age );```
+   
+where  "age " could be any value from (-1) to n.  By default target gender is set to (-1).
+These methods for targeting must be called calling after ```PeakAirExtension.init()``` and before ```PeakAirExtension.initialize(PEAK_APP_ID)```.

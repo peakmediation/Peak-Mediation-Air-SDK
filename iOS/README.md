@@ -89,6 +89,23 @@ Open properties of your project in Adobe Flash Builder-> select "ActionScript Bu
     com.peak.air.PeakAirExtension.EVENT_COMPLETED_REWARD_EXPERIENCE// = "completedRewardExperience";
     com.peak.air.PeakAirExtension.EVENT_NATIVE_AD_SHOW_SUCCESS //= "nativeAdShowSuccess";
     com.peak.air.PeakAirExtension.EVENT_NATIVE_AD_SHOW_FAILED //= "nativeAdShowFailed";
+	
+###10. Targeting:
+Peak SDK provides a way to set preffered targeting age and gender to inrease eCPM. This will not restrict ads to show only targeted ads.
+There are 2 method for targeting in PeakSDK for air:
+#####10.1. For gender targeting:
+  ```setTargetingGender( PeakTargetGender gender ); ```
+
+   where "gender" could be one of the values below:
+   ```UNKNOWN = 0,
+     MALE = 1,
+     FEMALE = 2.```
+by default the target gender is set to ```UNKNOWN```.
+#####10.2. For agetargeting:
+   ```setTargetingAge( int age );```
+   
+where  "age " could be any value from (-1) to n.  By default target gender is set to (-1).
+These methods for targeting must be called calling after ```PeakAirExtension.init()``` and before ```PeakAirExtension.initialize(PEAK_APP_ID)```.
 
 ###Example:
     PeakAirExtension.dispatcher.addEventListener(StatusEvent.STATUS, listenToPeak)
@@ -102,3 +119,4 @@ Open properties of your project in Adobe Flash Builder-> select "ActionScript Bu
              }
         }
     }
+
